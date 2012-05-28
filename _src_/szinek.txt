@@ -1,0 +1,9 @@
+page szöveg: #bdb58c
+page háttér: #4c3511
+
+tartalom szöveg: #5c5226
+tartalom háttér: #f1e8b3
+
+content-top: 40px;
+
+háttér átmenet: #bdb58c -> #6b6650
