@@ -11,12 +11,12 @@
  * have to override the theme function. You have to first find the theme
  * function that generates the output, and then "catch" it and modify it here.
  * The easiest way to do it is to copy the original function in its entirety and
- * paste it here, changing the prefix from theme_ to wesnoth_hu_. For example:
+ * paste it here, changing the prefix from theme_ to wesnoth_hu_theme_. For example:
  *
  *   original: theme_breadcrumb()
- *   theme override: wesnoth_hu_breadcrumb()
+ *   theme override: wesnoth_hu_theme_breadcrumb()
  *
- * where wesnoth_hu is the name of your sub-theme. For example, the zen_classic
+ * where wesnoth_hu_theme is the name of your sub-theme. For example, the zen_classic
  * theme would define a zen_classic_breadcrumb() function.
  *
  * If you would like to override any of the theme functions used in Zen core,
@@ -37,7 +37,7 @@
 
 /* -- Delete this line if you want to use and modify this code
 // Example: optionally add a fixed width CSS file.
-if (theme_get_setting('wesnoth_hu_fixed')) {
+if (theme_get_setting('wesnoth_hu_theme_fixed')) {
   drupal_add_css(path_to_theme() . '/layout-fixed.css', 'theme', 'all');
 }
 // */
@@ -46,7 +46,7 @@ if (theme_get_setting('wesnoth_hu_fixed')) {
 /**
  * Implementation of HOOK_theme().
  */
-function wesnoth_hu_theme(&$existing, $type, $theme, $path) {
+function wesnoth_hu_theme_theme(&$existing, $type, $theme, $path) {
   return zen_theme($existing, $type, $theme, $path);
 }
 
@@ -59,7 +59,7 @@ function wesnoth_hu_theme(&$existing, $type, $theme, $path) {
  *   The name of the theme function being called (name of the .tpl.php file.)
  */
 /* -- Delete this line if you want to use this function
-function wesnoth_hu_preprocess(&$vars, $hook) {
+function wesnoth_hu_theme_preprocess(&$vars, $hook) {
   $vars['sample_variable'] = t('Lorem ipsum.');
 }
 // */
@@ -73,7 +73,7 @@ function wesnoth_hu_preprocess(&$vars, $hook) {
  *   The name of the theme function being called ("page" in this case.)
  */
 /* -- Delete this line if you want to use this function
-function wesnoth_hu_preprocess_page(&$vars, $hook) {
+function wesnoth_hu_theme_preprocess_page(&$vars, $hook) {
   $vars['sample_variable'] = t('Lorem ipsum.');
 }
 // */
@@ -87,7 +87,7 @@ function wesnoth_hu_preprocess_page(&$vars, $hook) {
  *   The name of the theme function being called ("node" in this case.)
  */
 /* -- Delete this line if you want to use this function
-function wesnoth_hu_preprocess_node(&$vars, $hook) {
+function wesnoth_hu_theme_preprocess_node(&$vars, $hook) {
   $vars['sample_variable'] = t('Lorem ipsum.');
 }
 // */
@@ -101,7 +101,7 @@ function wesnoth_hu_preprocess_node(&$vars, $hook) {
  *   The name of the theme function being called ("comment" in this case.)
  */
 /* -- Delete this line if you want to use this function
-function wesnoth_hu_preprocess_comment(&$vars, $hook) {
+function wesnoth_hu_theme_preprocess_comment(&$vars, $hook) {
   $vars['sample_variable'] = t('Lorem ipsum.');
 }
 // */
@@ -115,7 +115,7 @@ function wesnoth_hu_preprocess_comment(&$vars, $hook) {
  *   The name of the theme function being called ("block" in this case.)
  */
 /* -- Delete this line if you want to use this function
-function wesnoth_hu_preprocess_block(&$vars, $hook) {
+function wesnoth_hu_theme_preprocess_block(&$vars, $hook) {
   $vars['sample_variable'] = t('Lorem ipsum.');
 }
 // */
@@ -125,7 +125,7 @@ function wesnoth_hu_preprocess_block(&$vars, $hook) {
  * The rel="nofollow" attribute is missing from anonymous users' URL in Drupal 6.0-6.2.
  */
 ///* -- Delete this line if you want to use this function
-function wesnoth_hu_username($object) {
+function wesnoth_hu_theme_username($object) {
 
   if ($object->uid && $object->name) {
     // Shorten the name when it is too long or it will break many tables.

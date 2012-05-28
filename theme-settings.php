@@ -9,11 +9,11 @@
  * @return
  *   A form array.
  */
-function wesnoth_hu_settings($saved_settings) {
+function wesnoth_hu_theme_settings($saved_settings) {
 
   // Get the default values from the .info file.
   $themes = list_themes();
-  $defaults = $themes['wesnoth_hu']->info['settings'];
+  $defaults = $themes['wesnoth_hu_theme']->info['settings'];
 
   // Merge the saved variables and their default values.
   $settings = array_merge($defaults, $saved_settings);
@@ -26,7 +26,7 @@ function wesnoth_hu_settings($saved_settings) {
   $form['subtheme_example'] = array(
     '#type'          => 'checkbox',
     '#title'         => t('Taxonómia feliratok látszanak'),
-    '#default_value' => $settings['wesnoth_hu_taxonomy'],
+    '#default_value' => $settings['wesnoth_hu_theme_taxonomy'],
     '#description'   => t("Lehetővé teszi a taxonómia feliratok eltüntetését."),
   );
   // */
