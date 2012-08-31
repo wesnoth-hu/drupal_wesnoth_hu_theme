@@ -1,0 +1,54 @@
+/**
+ * Sprite-ok
+ */
+
+  .cim-kep{
+    padding: 25px 5px 25px 75px;
+    margin: 5px;
+  }
+
+  div.kep-doboz{
+    background-repeat: no-repeat;
+    background-image: url(images/egysegek.gif);
+    width: 72px;
+    height: 72px;
+    float: left;
+  }
+
+  .kep-1{
+    background-position: 0 0;
+  }
+  .kep-2{
+    background-position: -72px 0;
+  }
+  .kep-3{
+    background-position: -144px 0;
+  }
+  .kep-4{
+    background-position: -216px 0;
+  }
+  .kep-5{
+    background-position: -288px 0;
+  }
+  .kep-6{
+    background-position: -360px 0;
+  }
+  .kep-7{
+    background-position: 0 -72px;
+  }
+  .kep-8{
+    background-position: -72px -72px;
+  }
+  .kep-9{
+    background-position: -144px -72px;
+  }
+  .kep-10{
+    background-position: -216px -72px;
+  }
+  .kep-11{
+    background-position: -288px -72px;
+  }
+  .kep-12{
+    background-position: -360px -72px;
+  }
+

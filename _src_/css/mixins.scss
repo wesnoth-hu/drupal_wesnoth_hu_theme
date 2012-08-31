@@ -1,0 +1,30 @@
+/**
+ * Various mixins
+ */
+
+// @include shadow(#111111);
+@mixin shadow($color: #333333) {
+  -moz-box-shadow: 0px 1px 2px $color;
+  -webkit-box-shadow: 0px 1px 2px $color;
+  box-shadow: 0px 1px 2px $color;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=90, Color='$color')";
+  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=90, Color='$color');
+}
+
+// @include boxshadow(#111111);
+@mixin boxshadow($color: #333333) {
+  -moz-box-shadow: 2px 2px 4px $color;
+  -webkit-box-shadow: 2px 2px 4px $color;
+  box-shadow: 2px 2px 4px $color;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=45, Color='$color')";
+  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=45, Color='$color');
+}
+
+// @include borderradius(5px);
+@mixin borderradius($rad: 5px) {
+  -webkit-border-radius: $rad;
+  -moz-border-radius: $rad;
+  border-radius: $rad;
+  border-collapse: separate;
+  border-spacing: 0
+}

@@ -133,9 +133,17 @@
         </div> <!-- /#header-blocks -->
       <?php endif; ?>
 
+      <a name="navigation" id="navigation"></a>
+
+      <?php if ($primary_links): ?>
+        <div id="menu" class="clear-block region">
+          <?php print wesnoth_hu_theme_links(wesnoth_hu_theme_navigation_links('primary-links'))?>
+        </div> <!-- /#menu -->
+      <?php endif; ?>
+
     </div></div> <!-- /#header-inner, /#header -->
 
-    <div id="main"><div id="main-inner" class="clear-block<?php if ($search_box || $primary_links || $secondary_links || $navbar) { print ' with-navbar'; } ?>">
+    <div id="main"><div id="main-inner" class="clear-block"><div id="main-section">
 
       <div id="content"><div id="content-inner">
 			<div id="content-top-img"><div id="content-top-img-inner"></div></div><!-- added for styling only -->
@@ -179,38 +187,10 @@
           </div> <!-- /#content-bottom -->
         <?php endif; ?>
 				
-			</div></div> <!-- /#content-inner3, /content-inner2 -->
+      </div></div> <!-- /#content-inner3, /content-inner2 -->
       <div id="content-bottom-img"><div id="content-bottom-img-inner"></div></div><!-- added for styling only -->
       </div></div> <!-- /#content-inner, /#content -->
-
-      <?php if ($search_box || $primary_links || $secondary_links || $navbar): ?>
-        <div id="navbar"><div id="navbar-inner" class="clear-block region region-navbar">
-
-          <a name="navigation" id="navigation"></a>
-
-          <?php if ($search_box): ?>
-            <div id="search-box">
-              <?php print $search_box; ?>
-            </div> <!-- /#search-box -->
-          <?php endif; ?>
-
-          <?php if ($primary_links): ?>
-            <div id="primary">
-              <?php print theme('links', $primary_links); ?>
-            </div> <!-- /#primary -->
-          <?php endif; ?>
-
-          <?php if ($secondary_links): ?>
-            <div id="secondary">
-              <?php print theme('links', $secondary_links); ?>
-            </div> <!-- /#secondary -->
-          <?php endif; ?>
-
-          <?php print $navbar; ?>
-
-        </div></div> <!-- /#navbar-inner, /#navbar -->
-      <?php endif; ?>
-
+          
       <?php if ($left): ?>
         <div id="sidebar-left"><div id="sidebar-left-inner" class="region region-left">
           <?php print $left; ?>
@@ -223,7 +203,7 @@
         </div></div> <!-- /#sidebar-right-inner, /#sidebar-right -->
       <?php endif; ?>
 
-    </div></div> <!-- /#main-inner, /#main -->
+    </div></div></div> <!-- /#main-inner, /#main -->
 
     <?php if ($footer || $footer_message): ?>
       <div id="footer"><div id="footer-inner" class="region region-footer">

@@ -34,6 +34,8 @@
   <div class="forum-post <?php print $classes; ?> clear-block">
 <?php endif; ?>
 
+  <div class="forum-post-main"><div class="forum-post-main-inner">
+
   <div class="post-info clear-block">
     <?php if ($title /*&& !$top_post*/): ?>
       <div class="post-title">
@@ -56,10 +58,6 @@
 
   <?php // <div class="forum-post-wrapper"> ?>
 
-    <div class="forum-post-panel-sub">
-      <?php print $author_pane; ?>
-    </div>
-
     <div class="forum-post-panel-main clear-block">
       <div class="content">
         <?php print $content ?>
@@ -72,6 +70,12 @@
       <?php endif; ?>
     </div>
   <?php //</div> ?>
+
+  </div></div><!-- /.forum-post-main -->
+    
+  <div class="forum-post-panel-sub">
+    <?php print $author_pane; ?>
+  </div>
 
   <div class="forum-post-footer clear-block">
     <div class="forum-jump-links">

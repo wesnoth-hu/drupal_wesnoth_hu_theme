@@ -1,0 +1,130 @@
+/* témák kilistázása */
+
+/*
+.forum-table {
+  border: 5px;
+  background: none;
+}
+*/
+
+/* overwrite default values */
+#forum td.container {
+  padding: 1em 0 0;
+}
+
+#forum .container .name,
+#forum .container .description,
+.forum-header tr, 
+.forum-topics thead tr {
+  background: $base-border-color; /* rgb(50, 30, 80) */
+  border: 1px solid $base-border-color; /* rgb(50, 40, 70) */
+  border-left: 1px solid $base-border-color; /* rgb(50, 40, 70) */
+  /*border-bottom: 0;*/
+  padding: 5px;
+  margin: 0;
+  color: $negative-color;
+}
+
+#forum .container .name a,
+#forum .container .description a,
+.forum-header tr a, 
+.forum-topics thead tr a,
+#forum .forum-topics thead th a {
+  color: $negative-link-color;
+}
+
+#forum th.forum-name {
+  padding-left: 0;
+  text-align: left;
+  width: 60%;	
+}
+
+.forum-num-topics,
+.forum-posts,
+.forum-last-post {
+  font-size: 0.8em;
+}
+
+.forum-num-topics,
+.forum-posts {
+  width: 50px;
+}
+
+
+#forum .description {
+  padding: 0;
+}
+
+#forum tr {
+  border-left: none; /* rgb(50, 40, 70) */
+  border-right: none; /* rgb(50, 40, 70) */
+}
+
+.forum-post-main {
+  margin-right: -180px;
+  float: left;
+  width: 100%;
+}
+
+.forum-post-main-inner {
+  float: left;
+  margin-right: 180px;
+}
+
+/* A fórumnál a felhasználó adatai legyenek a jobb oldalon */
+.forum-post-panel-sub {
+  float: left;
+  width: 150px;
+  border-left: 1px solid #fff;
+  margin-left: 10px;
+}
+
+.forum-post-panel-main {
+  margin-left: 0; /* reset module default */
+}
+
+.post-info {
+}
+
+.post-title {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.author-name {
+  font-weight: bold;
+}
+
+.author-joined, .author-pane-contact {
+  font-size: 0.875em;
+}
+
+.forum-post-panel-main .content {
+  padding: 5px 0;
+}
+
+.author-signature {
+  border-top: 1px #999 solid;
+  margin: 3em 0 0;
+}
+
+.posted-on {
+  font-size: 0.875em;
+}
+
+.forum-jump-links {
+  padding: 0;
+}
+
+.forum-jump-links a {
+  display: block;
+  background: url(images/forum/icon_back_top.gif) no-repeat 0 0;
+  width: 11px;
+  height: 11px;
+  text-indent: 12px;
+  overflow: hidden;
+}
+
+.forum-links {
+  display: none;
+}
