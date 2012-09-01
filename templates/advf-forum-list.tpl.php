@@ -31,7 +31,7 @@
  */
 ?>
 
-<?php if (false): ?>
+<? if (false): ?>
 <table id="forum-<?php print $forum_id; ?>" class="forum-table">
 
   <thead class="forum-header">
@@ -46,15 +46,28 @@
 
   <tbody>
     <?php $container_adjustment = 0; ?>
-<?php endif; ?>
+<? endif; ?>
+
+<?php $start = 1?>
     <?php foreach ($forums as $child_id => $forum): ?>
 
-        <?php if ($forum->is_container): ?>
+        <?php
+          // a subforum-ban is ez alapján megy a kimenet, ezért az első sorban mindig legyen fejléc
+          if ($forum->is_container || $start > 0):
 
-          <table class="forum-table">
+            // ha nem az első, akkor zárjuk le az előző táblát
+            if($start) {
+               $start = 0;
+            } else {
+              print '</tbody></table>';
+            }
+          ?>
 
+          <table class="forum-topics">
+
+          <thead>
           <tr id="forum-list-<?php print $child_id; ?>" class="<?php print $forum->zebra; ?> <?php print $forum->row_classes;?> container-<?php print $forum->container_id;?>" >
-            <td colspan="5" class="container">
+            <th colspan="2" class="forum-name">
               <div class="forum-details">
                 <div class="name">
                   <a href="<?php print $forum->link; ?>"><?php print $forum->name; ?></a>
@@ -63,25 +76,36 @@
                   <div class="description"><?php print $forum->description; ?></div>
                 <?php endif; ?>
               </div>
-            </td>
+            </th>
+      <th class="forum-num-topics"><?php print t('Topics');?></th>
+      <th class="forum-posts"><?php print t('Posts'); ?></th>
+      <th class="forum-last-post"><?php print t('Last post'); ?></th>
 
-            <?php $container_adjustment = 1; ?>
+            <?php //$container_adjustment = 1; ?>
           </tr>
+        </thead>
         <?php else: ?>
+         <tbody>
           <tr id="forum-list-<?php print $child_id; ?>" class="<?php print $forum->zebra; ?> <?php print $forum->row_classes;?> in-container-<?php print $forum->container_id;?>">
             <?php if ($forum->depth == 0) {$container_adjustment = 0;} ?>
 
-            <td class="forum-icon"> <?php print $forum->icon ?> </td>
+            <td class="forum-icon">
+              <?php if( wesnoth_hu_theme_unread_comments_in_forum($child_id)>0 ): ?>
+                <div class="forum-icon-img icon-new"><span>new</span></div>
+              <?php else: ?>
+                <div class="forum-icon-img icon-default"><span>default</span></div>
+              <?php endif; ?>
+            </td>
 
             <td>
-              <?php print str_repeat('<div class="indent">', $forum->depth - $container_adjustment); ?>
+              <?php //print str_repeat('<div class="indent">', $forum->depth - $container_adjustment); ?>
                 <div class="forum-details">
                   <div class="name"><a href="<?php print $forum->link; ?>"><?php print $forum->name; ?></a></div>
                   <?php if ($forum->description): ?>
                     <div class="description"><?php print $forum->description; ?></div>
                   <?php endif; ?>
                 </div>
-              <?php print str_repeat('</div>', $forum->depth - $container_adjustment); ?>
+              <?php //print str_repeat('</div>', $forum->depth - $container_adjustment); ?>
             </td>
 
             <td class="topics">
@@ -111,6 +135,6 @@
   <?php print $forum_statistics; ?>
 <?php endif; ?>
 
-<?php if (!empty($forum_legend)): ?>
+<?php if (!empty($forum_legend) && false): ?>
   <?php print $forum_legend; ?>
 <?php endif; ?>

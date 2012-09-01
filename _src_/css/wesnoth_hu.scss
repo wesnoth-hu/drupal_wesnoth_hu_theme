@@ -56,7 +56,7 @@ body.node {
 
 /** header **/
 #header {
-  height: 240px;
+  min-height: 240px;
   background: #875e20 url(images/fejlec-bal.jpg) no-repeat left top;
   padding: 0 0 0 10px;
 }
@@ -64,8 +64,8 @@ body.node {
 #header-inner {
   background: url(images/fejlec.jpg) no-repeat right top;
   text-align: center;
-  height: 100%;
-  padding: 2px;
+  height: 230px; // 240-5*2
+  padding: 5px;
 }
 
 #logo-title /* Wrapper for logo, website name, and slogan */

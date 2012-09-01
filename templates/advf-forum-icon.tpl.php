@@ -20,7 +20,7 @@
 <?php endif; ?>
 
 <?php //print theme('image', "$iconpath/topic_$icon.gif"); ?>
-<div class="forum-icon icon-<?php print $icon ?>"><span><?php print $icon?></span></div>
+<div class="forum-icon-img icon-<?php print $icon ?>"><span><?php print $icon?></span></div>
 
 <?php if ($new_posts): ?>
   </a>

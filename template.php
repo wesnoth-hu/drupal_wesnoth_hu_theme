@@ -26,7 +26,6 @@
  *   theme_menu_local_tasks() in zen/template-menus.php
  */
 
-
 /*
  * Add any conditional stylesheets you will need for this sub-theme.
  *
@@ -42,11 +41,17 @@ if (theme_get_setting('wesnoth_hu_theme_fixed')) {
 }
 // */
 
-
 /**
  * Implementation of HOOK_theme().
  */
 function wesnoth_hu_theme_theme(&$existing, $type, $theme, $path) {
+
+  // insert a large indexed value, so advanced_forum_theme_register_alter can't override it
+  $existing['forum_list']['theme paths'][99] = 'sites/all/themes/wesnoth_hu_theme/templates/';
+  $existing['forum_icon']['theme paths'][99] = 'sites/all/themes/wesnoth_hu_theme/templates/';
+  $existing['forum_topic_list']['theme paths'][99] = 'sites/all/themes/wesnoth_hu_theme/templates/';
+  $existing['comment_wrapper']['theme paths'][99] = 'sites/all/themes/wesnoth_hu_theme/templates/';
+
   return zen_theme($existing, $type, $theme, $path);
 }
 
@@ -58,68 +63,22 @@ function wesnoth_hu_theme_theme(&$existing, $type, $theme, $path) {
  * @param $hook
  *   The name of the theme function being called (name of the .tpl.php file.)
  */
-/* -- Delete this line if you want to use this function
+// /* -- Delete this line if you want to use this function
 function wesnoth_hu_theme_preprocess(&$vars, $hook) {
-  $vars['sample_variable'] = t('Lorem ipsum.');
+  global $theme_key;
+  $path_to_theme = drupal_get_path('theme', $theme_key);
+
+  //print '<pre>';
+  if($hook == 'forum_list'){
+    /*
+    print '<pre>';
+    print_r($vars);
+    exit();
+    // */
+    //$vars['template_files'][0] = '/templates/advf-forum-list';
+  }
 }
 // */
-
-/**
- * Override or insert PHPTemplate variables into the page templates.
- *
- * @param $vars
- *   A sequential array of variables to pass to the theme template.
- * @param $hook
- *   The name of the theme function being called ("page" in this case.)
- */
-/* -- Delete this line if you want to use this function
-function wesnoth_hu_theme_preprocess_page(&$vars, $hook) {
-  $vars['sample_variable'] = t('Lorem ipsum.');
-}
-// */
-
-/**
- * Override or insert PHPTemplate variables into the node templates.
- *
- * @param $vars
- *   A sequential array of variables to pass to the theme template.
- * @param $hook
- *   The name of the theme function being called ("node" in this case.)
- */
-/* -- Delete this line if you want to use this function
-function wesnoth_hu_theme_preprocess_node(&$vars, $hook) {
-  $vars['sample_variable'] = t('Lorem ipsum.');
-}
-// */
-
-/**
- * Override or insert PHPTemplate variables into the comment templates.
- *
- * @param $vars
- *   A sequential array of variables to pass to the theme template.
- * @param $hook
- *   The name of the theme function being called ("comment" in this case.)
- */
-/* -- Delete this line if you want to use this function
-function wesnoth_hu_theme_preprocess_comment(&$vars, $hook) {
-  $vars['sample_variable'] = t('Lorem ipsum.');
-}
-// */
-
-/**
- * Override or insert PHPTemplate variables into the block templates.
- *
- * @param $vars
- *   A sequential array of variables to pass to the theme template.
- * @param $hook
- *   The name of the theme function being called ("block" in this case.)
- */
-/* -- Delete this line if you want to use this function
-function wesnoth_hu_theme_preprocess_block(&$vars, $hook) {
-  $vars['sample_variable'] = t('Lorem ipsum.');
-}
-// */
-
 
 /**
  * The rel="nofollow" attribute is missing from anonymous users' URL in Drupal 6.0-6.2.
@@ -305,3 +264,38 @@ function wesnoth_hu_theme_links($links, $attributes = array('class' => 'links'))
   return $output;
 }
 
+/**
+ * Calculates the number of unread replies for each forum and returns the
+ * count for the requested forum.
+ */
+function wesnoth_hu_theme_unread_comments_in_forum($tid, $uid) {
+  static $result_cache = NULL;
+  $r = 0;
+
+  if (is_NULL($result_cache)) {
+    $result_cache = array();
+
+    $sql = "SELECT COUNT(c.cid) AS count, f.tid, t.parent
+            FROM {comments} c
+            INNER JOIN {forum} f ON c.nid = f.nid
+            INNER JOIN {node} n ON f.vid = n.vid
+            INNER JOIN {term_hierarchy} t ON t.tid = f.tid
+            LEFT JOIN {history} h ON c.nid = h.nid AND h.uid = %d
+            WHERE c.status = 0 AND c.timestamp > %d AND (c.timestamp > h.timestamp OR h.timestamp IS NULL)
+            GROUP BY f.tid";
+
+    $sql = db_rewrite_sql($sql, 'c', 'cid');
+
+    $result = db_query($sql, $uid, NODE_NEW_LIMIT);
+    while ($row = db_fetch_array($result)) {
+      $result_cache[$row['tid']] = $row['count'];
+      if($row['parent'] > 0){
+        // ha van szülője, akkor a szülőnek is könyveljük el
+        $result_cache[$row['parent']] += $row['count'];
+      }
+    }
+  }
+
+  if(isset($result_cache[$tid])) $r = $result_cache[$tid];
+  return $r;
+}

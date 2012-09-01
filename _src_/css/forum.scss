@@ -84,6 +84,7 @@
 }
 
 .post-info {
+  height: auto; /* override default 100% */
 }
 
 .post-title {
@@ -128,3 +129,30 @@
 .forum-links {
   display: none;
 }
+
+// it's a td in which the icon resides
+#forum td.forum-icon {
+  width: 30px;
+}
+
+.forum-icon-img {
+  width: 27px;
+  height: 27px;
+  display: block;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.forum-details {
+  width: 100%;
+}
+
+.forum-icon-img span {
+  display: none;
+}
+
+.icon-new { background: url(images/forum/topic_unread.gif); }
+.icon-default { background: url(images/forum/topic_read.gif); }
+.icon-hot { background: url(images/forum/topic_read_hot.gif); }
+.icon-hot-new { background: url(images/forum/topic_unread_hot.gif); }
+
