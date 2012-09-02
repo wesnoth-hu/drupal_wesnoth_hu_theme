@@ -199,33 +199,33 @@ h1#site-name, div#site-name /* The name of the website */
   padding-bottom: 0; /* Undo system.css */
 }
 
+#main,
+.content {
+  line-height: 1.5em;
+}
+
 p{
   margin: 0 0 1em 0;
   line-height: 1.5em;
 }
 
-// TODO: színek!
-  blockquote,
-  .bb-quote {
-    padding: 5px;
-    background-color: rgb(235, 234, 221);
-    border: 1px solid rgb(219, 219, 206);
-    margin-left: 2em;
-  }
+blockquote,
+.bb-quote {
+  padding: 5px;
+  background-color: $quote-bg-color;
+  border: 1px solid $quote-border-color;
+  margin: 0.5em 0.5em 0.5em 2em;
+}
 
-  .bb-quote blockquote {
-    border: 0; /* a bb-quote-ban lévő idézetnek már nem kell keret*/
-  }
+.bb-quote blockquote {
+  border: 0; /* a bb-quote-ban lévő idézetnek már nem kell keret*/
+}
 
-  blockquote {
-    padding: 5px;
-  }
-
-  @mixin header {
-    margin: 0 auto 0.5em auto;
-    font-weight: bold;
-    font-family: $font-family-serif;
-  }
+@mixin header {
+  margin: 0 auto 0.5em auto;
+  font-weight: bold;
+  font-family: $font-family-serif;
+}
 
   h1 /* The title of the page */
   {
