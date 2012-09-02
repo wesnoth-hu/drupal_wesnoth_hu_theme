@@ -51,6 +51,7 @@ function wesnoth_hu_theme_theme(&$existing, $type, $theme, $path) {
   $existing['forum_icon']['theme paths'][99] = 'sites/all/themes/wesnoth_hu_theme/templates/';
   $existing['forum_topic_list']['theme paths'][99] = 'sites/all/themes/wesnoth_hu_theme/templates/';
   $existing['comment_wrapper']['theme paths'][99] = 'sites/all/themes/wesnoth_hu_theme/templates/';
+  $existing['author_pane']['theme paths'][99] = 'sites/all/themes/wesnoth_hu_theme/templates/';
 
   return zen_theme($existing, $type, $theme, $path);
 }
@@ -68,14 +69,20 @@ function wesnoth_hu_theme_preprocess(&$vars, $hook) {
   global $theme_key;
   $path_to_theme = drupal_get_path('theme', $theme_key);
 
-  //print '<pre>';
-  if($hook == 'forum_list'){
+  if($hook == 'comment'){
     /*
     print '<pre>';
-    print_r($vars);
+    print_r($vars['account']);
     exit();
     // */
-    //$vars['template_files'][0] = '/templates/advf-forum-list';
+    // tegyük bele az osztályokba az online felhasználók kijelzését
+    $timestamp = time() - 1800; // 3600s is one hour.
+    $result = db_query('SELECT COUNT(*) FROM {sessions} WHERE uid = %d AND timestamp >= %d', $vars['account']->uid, $timestamp);
+    $r = db_result($result);
+    if( $r > 0 ) $vars['classes_array'][] = 'author-online';
+
+    // user location
+    $vars['location_user_location'] = $vars['account']->profile_user_from;
   }
 }
 // */

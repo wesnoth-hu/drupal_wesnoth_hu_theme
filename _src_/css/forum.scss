@@ -50,7 +50,6 @@
   width: 50px;
 }
 
-
 #forum .description {
   padding: 0;
 }
@@ -58,6 +57,17 @@
 #forum tr {
   border-left: none; /* rgb(50, 40, 70) */
   border-right: none; /* rgb(50, 40, 70) */
+}
+
+
+/**
+ * Egyedi fórumbejegyzés formázása
+ */
+
+.forum-post.author-online {
+  background-image: url(images/forum/icon_user_online.gif);
+  background-position: top right;
+  background-repeat: no-repeat;
 }
 
 .forum-post-main {
@@ -96,8 +106,13 @@
   font-weight: bold;
 }
 
-.author-joined, .author-pane-contact {
+.author-profile {
+  color: $base-color-light;
   font-size: 0.875em;
+}
+
+.author-pane-label {
+  color: $base-color;
 }
 
 .forum-post-panel-main .content {
@@ -108,6 +123,35 @@
   border-top: 1px #999 solid;
   margin: 3em 0 0;
 }
+
+.forum-post-panel-sub .author-pane {
+    margin: 0 0 0 10px;
+}
+
+/* Link gombok */
+.author-pane-link-line {
+  float: left;
+}
+
+.author-pane-link {
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin: 2px;
+}
+
+.author-pane-link span {
+  display: none;
+}
+.author-pane-link:hover {
+  background-position: 0 -20px;
+}
+
+.author-privatemsg .author-pane-link { background-image: url(images/forum/icon_contact_pm.gif); }
+.author-contact .author-pane-link { background-image: url(images/forum/icon_contact_email.gif); }
+.author-website .author-pane-link { background-image: url(images/forum/icon_contact_www.gif); }
+
+/* Link gombok vége */
 
 .posted-on {
   font-size: 0.875em;

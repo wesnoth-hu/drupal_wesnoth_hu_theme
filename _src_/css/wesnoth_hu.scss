@@ -57,14 +57,14 @@ body.node {
 /** header **/
 #header {
   min-height: 240px;
-  background: #875e20 url(images/fejlec-bal.jpg) no-repeat left top;
+  background: $page-bg-color url(images/fejlec-bal.jpg) no-repeat left top;
   padding: 0 0 0 10px;
 }
 
 #header-inner {
   background: url(images/fejlec.jpg) no-repeat right top;
   text-align: center;
-  height: 230px; // 240-5*2
+  min-height: 230px; // 240-5*2
   padding: 5px;
 }
 
@@ -101,7 +101,7 @@ h1#site-name, div#site-name /* The name of the website */
 
 /** main (container for everything else) **/
 #main {
-  background: #4c3511 url(images/tart-hatter-bal.jpg) repeat-y left top;
+  background: $page-bg-color url(images/tart-hatter-bal.jpg) repeat-y left top;
   margin: 0;
   padding: 0 0 0 10px;
 }
@@ -360,7 +360,7 @@ p{
   #footer
   {
     height: 100px;
-    background: #875e20 url(images/lablec-bal.jpg) no-repeat left top;
+    background: $page-bg-color url(images/lablec-bal.jpg) no-repeat left top;
     margin: 0;
     padding: 0 0 0 10px;
     color: $negative-color;
@@ -507,9 +507,13 @@ p{
 
   .node .meta /* Wrapper for submitted and terms data */
   {
-    font-size: 0.8em;
     font-style: italic;
   }
+
+.meta // various not so important data
+{
+  font-size: 0.8em;
+}
 
   .node .submitted /* The "posted by" information */
   {
@@ -574,7 +578,7 @@ p{
   {
     margin: 0.5em 0;
     padding: 0.5em;
-    background: $base-table-bg-color; /* rgb(50, 15, 90) */
+    background-color: $base-table-bg-color; /* rgb(50, 15, 90) */
     @include borderradius();
   }
 
@@ -650,7 +654,7 @@ p{
     float: right;
   }
   .picture img{
-    border: #873 1px solid;
+    border: 0;
   }
 
   .comment .submitted /* The "posted by" information */
@@ -884,6 +888,19 @@ p{
     background: $base-table-bg-color; /* rgb(50, 15, 90) */
   }
 
+  th {
+    background: $base-border-color;
+    color: $negative-color;
+  }
+
+  th, thead th {
+    padding: 0.1em 0.5em 5px;
+  }
+
+  th a {
+    color: $negative-link-color;
+  }
+
   tr.odd
   {
     /* background-color: #eee; */ /* Drupal core uses a #eee background */
@@ -1002,26 +1019,22 @@ p{
    */
   form tbody
   {
-    border-top: 1px solid #ccc;
   }
 
   form th
   {
     text-align: left;
     padding-right: 1em;
-    border-bottom: 3px solid #ccc;
   }
 
   form tbody th
   {
-    border-bottom: 1px solid #ccc;
   }
 
   form thead th
   {
     text-align: left;
     padding-right: 1em;
-    border-bottom: 3px solid #ccc;
   }
 
   td {
