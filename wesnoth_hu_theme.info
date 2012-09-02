@@ -1,9 +1,7 @@
-; $Id: wesnoth_huwesnoth_hu.info,v 1.13.2.1 2009/02/13 06:13:18 johnalbin Exp $
-
-
   ; The name and description of the theme used on the admin/build/themes page.
 name        = wesnoth.fsf.hu
 description = Magyar Wesnoth Közösségi Portál kinézete.
+version     = 1.1
 
   ; The screenshot used on the admin/build/themes page.
 screenshot = screenshot.png

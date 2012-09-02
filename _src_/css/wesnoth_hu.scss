@@ -913,7 +913,7 @@ p{
     background-color: $base-table-bg-color-2;
   }
 
-  tr.odd, tr.even {
+  tr, tr.odd, tr.even {
     border-bottom: 1px solid $base-border-color;
   }
 

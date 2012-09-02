@@ -52,7 +52,7 @@ function wesnoth_hu_theme_theme(&$existing, $type, $theme, $path) {
   $existing['forum_topic_list']['theme paths'][99] = 'sites/all/themes/wesnoth_hu_theme/templates/';
   $existing['comment_wrapper']['theme paths'][99] = 'sites/all/themes/wesnoth_hu_theme/templates/';
   $existing['author_pane']['theme paths'][99] = 'sites/all/themes/wesnoth_hu_theme/templates/';
-
+  
   return zen_theme($existing, $type, $theme, $path);
 }
 
