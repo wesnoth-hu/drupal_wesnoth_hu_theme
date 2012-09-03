@@ -1,7 +1,7 @@
   ; The name and description of the theme used on the admin/build/themes page.
 name        = wesnoth.fsf.hu
 description = Magyar Wesnoth Közösségi Portál kinézete.
-version     = 1.1
+version     = 6.x-1.1
 
   ; The screenshot used on the admin/build/themes page.
 screenshot = screenshot.png
