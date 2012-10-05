@@ -31,14 +31,17 @@
         <?php print $account_name; ?>
       </div>
 
-      <?php /* Roles */ ?>
-      <div class="author-pane-line author-roles">
-      <?php
-        $roles = array_slice($account->roles, 1);
-        sort($roles);
-        print implode('<br>', $roles);
+      <?php /* Roles */
+        if(count($account->roles) > 1):
       ?>
+      <div class="author-pane-line author-roles">
+        <?php
+          $roles = array_slice($account->roles, 1);
+          sort($roles);
+          print implode('<br>', $roles);
+        ?>
       </div>
+      <?php endif; ?>
 
       <?php /* Online status */ ?>
       <?php if (!empty($online_status) && false): ?>

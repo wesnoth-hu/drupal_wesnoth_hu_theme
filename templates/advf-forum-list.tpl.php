@@ -48,23 +48,22 @@
     <?php $container_adjustment = 0; ?>
 <? endif; ?>
 
-<?php $start = 1?>
+<?php $start = true ?>
     <?php foreach ($forums as $child_id => $forum): ?>
 
         <?php
           // a subforum-ban is ez alapján megy a kimenet, ezért az első sorban mindig legyen fejléc
-          if ($forum->is_container || $start > 0):
+          if ($forum->is_container || $start):
 
             // ha nem az első, akkor zárjuk le az előző táblát
             if($start) {
-               $start = 0;
+               $start = false;
             } else {
               print '</tbody></table>';
             }
           ?>
 
-          <table class="forum-topics">
-
+        <table class="forum-topics">
           <thead>
           <tr id="forum-list-<?php print $child_id; ?>" class="<?php print $forum->zebra; ?> <?php print $forum->row_classes;?> container-<?php print $forum->container_id;?>" >
             <th colspan="2" class="forum-name">
@@ -90,7 +89,7 @@
             <?php if ($forum->depth == 0) {$container_adjustment = 0;} ?>
 
             <td class="forum-icon">
-              <?php if( wesnoth_hu_theme_unread_comments_in_forum($child_id)>0 ): ?>
+              <?php if( wesnoth_hu_theme_unread_comments_in_forum($child_id, $user->uid) >0 ): ?>
                 <div class="forum-icon-img icon-new"><span>new</span></div>
               <?php else: ?>
                 <div class="forum-icon-img icon-default"><span>default</span></div>
