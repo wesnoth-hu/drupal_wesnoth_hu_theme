@@ -888,6 +888,11 @@ blockquote,
     background: $base-table-bg-color; /* rgb(50, 15, 90) */
   }
 
+  /* Table version on admin page */
+  table.version {
+    border: none;
+  }
+
   th {
     background: $base-border-color;
     color: $negative-color;
