@@ -1,0 +1,18 @@
+{
+    "name": "wesnoth-hu/wesnoth_hu_theme",
+    "description": "Theme for the Hungarian Wesnoth Portal",
+    "type": "drupal-theme",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Gábor Udvari",
+            "email": "gabor.udvari@gmail.com"
+        }
+    ],
+    "require": {
+    },
+    "require-dev": {
+        "codegyre/robo": "dev-master",
+        "leafo/scssphp": "~0.2"
+    }
+}

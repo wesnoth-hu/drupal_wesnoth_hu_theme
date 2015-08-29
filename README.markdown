@@ -12,3 +12,14 @@ Authors:
 Credits:
 
 * _src_/textures/burnt_sand_lighter.jpg - http://www.burningwell.org/gallery2/v/textures/tiling/burnt_sand_lighter.png.html
+
+## Installation
+
+Clone the repository, install the dependencies with [Composer](https://getcomposer.org/) and build the assets with [Robo](http://codegyre.github.io/Robo/):
+
+```
+git clone git@github.com:wesnoth-hu/wesnoth_hu_theme.git
+cd wesnoth_hu_theme
+composer install
+vendor/bin/robo build
+```
