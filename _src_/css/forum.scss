@@ -78,7 +78,8 @@
 
 .forum-post-main-inner {
   float: left;
-  margin-right: 180px;
+  /* margin-right: 180px; */ /* áthelyezve a content-be */
+  max-width: 100%;
 }
 
 /* A fórumnál a felhasználó adatai legyenek a jobb oldalon */
@@ -117,6 +118,7 @@
 
 .forum-post-panel-main .content {
   padding: 5px 0;
+  margin-right: 180px;
 }
 
 .author-signature {
