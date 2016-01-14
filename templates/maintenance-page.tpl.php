@@ -86,7 +86,7 @@
   <?php print $styles; ?>
   <?php print $scripts; ?>
 </head>
-<body class="<?php print $body_classes; ?>">
+<body class="maintenance page front no-sidebar">
 
   <div id="page"><div id="page-inner">
 
@@ -101,19 +101,19 @@
         <div id="logo-title">
 
           <?php if ($logo): ?>
-            <div id="logo"><a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" id="logo-image" /></a></div>
+            <div id="logo"><a href="/" title="<?php print t('Home'); ?>" rel="home"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" id="logo-image" /></a></div>
           <?php endif; ?>
 
           <?php if ($site_name): ?>
             <?php if ($title): ?>
               <div id="site-name"><strong>
-                <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home">
+                <a href="/" title="<?php print t('Home'); ?>" rel="home">
                 <?php print $site_name; ?>
                 </a>
               </strong></div>
             <?php else: ?>
               <h1 id="site-name">
-                <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home">
+                <a href="/" title="<?php print t('Home'); ?>" rel="home">
                 <?php print $site_name; ?>
                 </a>
               </h1>
@@ -168,7 +168,7 @@
         <div id="content-area">
           <p><em><?php print $content; ?></em></p>
         <!-- egyéb linkek szöveg -->
-        <p>Amíg az oldalba vésett rúnák visszanyerik mágikus erejüket, gyere és <em>játssz velünk a wesnoth.kfki.hu kiszolgálón</em>, vagy <em>beszélgess velünk a freenode.net szerver #wesnoth-hu</em> <a href="http://webchat.freenode.net/?channels=wesnoth-hu">csevegőszobájában</a>!</p>
+        <p>Amíg az oldalba vésett rúnák visszanyerik mágikus erejüket, gyere és <em>játssz velünk a 0x64.org kiszolgálón</em>, vagy <em>beszélgess velünk a freenode.net szerver #wesnoth-hu</em> <a href="http://webchat.freenode.net/?channels=wesnoth-hu">csevegőszobájában</a>!</p>
         </div>
 
         <?php if ($feed_icons): ?>
@@ -181,7 +181,8 @@
           </div> <!-- /#content-bottom -->
         <?php endif; ?>
 				
-			</div></div> <!-- /#content-inner3, /content-inner2 -->
+      </div></div> <!-- /#content-inner3, /content-inner2 -->
+
       <div id="content-bottom-img"><div id="content-bottom-img-inner"></div></div><!-- added for styling only -->
       </div></div> <!-- /#content-inner, /#content -->
 
@@ -227,7 +228,7 @@
 
     </div></div> <!-- /#main-inner, /#main -->
 
-    <?php if ($footer || $footer_message): ?>
+    <?php if (true || $footer || $footer_message): ?>
       <div id="footer"><div id="footer-inner" class="region region-footer">
 
         <?php if ($footer_message): ?>
