@@ -1,96 +1,145 @@
-  ; The name and description of the theme used on the admin/build/themes page.
+; Drupal's .info files allow themers to easily specify some of the static
+; properties of your theme. Properties such as its name, stylesheets,
+; javascripts, and block regions.
+;
+; Drupal 7 stores a cache of the data in this .info files. If you modify any
+; lines in this file, you MUST refresh Drupal 7's cache by simply visiting the
+; Appearance page at admin/appearance.
+
+
+
+; The name, description and screenshot used for this theme on the Appearance
+; page at admin/appearance.
+
+screenshot  = screenshot.png
 name        = wesnoth.fsf.hu
 description = Magyar Wesnoth Közösségi Portál kinézete.
-version     = 6.x-1.2
+version     = 7.0.0
 
-  ; The screenshot used on the admin/build/themes page.
-screenshot = screenshot.png
 
-  ; "core" specifies the version of Drupal that this theme is compatible with.
-  ; "base theme" specifies that this is a theme that uses the "zen" theme as its
-  ; base theme. Its unlikely you will ever need to change these, but they are
-  ; required fields for a Zen sub-theme. The "engine" field is not used in a
-  ; sub-theme since the engine is inherited from its base theme.
-core       = 6.x
-base theme = zen
+; This theme is compatible with Drupal 7 core. And it is a sub-theme of Zen.
 
-  ; This section adds CSS files to your theme. The media type is specified in
-  ; the brackets. Typical CSS media types include "all", "screen", "print", and
-  ; "handheld". See http://www.w3.org/TR/CSS21/media.html#media-types for a full
-  ; list of stylesheet media types in CSS 2.1.
-  ;
-  ; You can also override any of Zen's stylesheets or any module's stylesheets,
-  ; an /extremely/ useful feature. See the excellent Drupal 6 Theme Guide at
-  ; http://drupal.org/node/171209 for more details.
+core        = 7.x
+base theme  = zen
 
-  ; To prevent stylesheets of a base theme or of a module from being included in
-  ; our sub-theme, we specify it in our .info file (and we don't need to have a
-  ; stylesheet in our sub-theme with that name.) For example, we prevent the
-  ; zen.css file in the base theme from being included by specifying it here.
-stylesheets[all][] = zen.css
 
-  ; basic zen stylesheets which are glued together for optimizations:
-stylesheets[all][] = layout.css
-stylesheets[all][] = html-elements.css
-stylesheets[all][] = tabs.css
-stylesheets[all][] = messages.css
-stylesheets[all][] = block-editing.css
-stylesheets[all][] = wireframes.css
-  ; instead of them:
-stylesheets[all][] = zen-essentials.css
 
-stylesheets[all][] = wesnoth_hu.css
-stylesheets[print][] = print.css
+; This section controls the CSS files for your theme. There are 3 different
+; things you can do with a "stylesheets" line:
+; - Add a new stylesheet for your theme.
+; - Override a module's stylesheet. If the stylesheet you are adding uses the
+;   same filename as a stylesheet from a Drupal core or contrib module, your CSS
+;   file will be used instead of the module's file.
+; - Remove a module's stylesheet. If you specify the name of a Drupal core or
+;   contrib module's stylesheets, Drupal will remove that stylesheet if you do
+;   NOT include a file with that name with your theme.
+;
+; stylesheets[MEDIA][] = FILE
+;
+; The "FILE" is the name of the stylesheet to add/override/remove.
+; The "MEDIA" in the first set of brackets is a media type or a media query.
+; Typical CSS media types include "all", "screen", "print", and "handheld". A
+; typical media query is "screen and (max-width: 320px)".
+;
+; CSS2.1 media types: http://www.w3.org/TR/CSS21/media.html#media-types
+; CSS3 media queries: http://www.w3.org/TR/css3-mediaqueries/
 
-  ; Set the conditional stylesheets that are processed by IE.
-; conditional-stylesheets[if IE][all][] = ie.css
+; First we remove any Drupal styling that Zen provides as components.
+stylesheets[all][] = system.base.css
+stylesheets[all][] = system.menus.css
+stylesheets[all][] = system.messages.css
+stylesheets[all][] = system.theme.css
+stylesheets[all][] = comment.css
+stylesheets[all][] = node.css
 
-  ; Optionally add some jquery scripts to your theme.
-; scripts[] = script.js
+; Then we add our own stylesheet.
+stylesheets[all][] = css/wesnoth_hu.css
+
+; If you wish to use conditional stylesheets, you should install the
+; conditional stylesheets module: https://drupal.org/project/conditional_styles
+;
+;stylesheets-conditional[lte IE 8][all][] = css/ie8.css
+;stylesheets-conditional[(gte IE 9)|(gt IEMobile 7)|(!IE)][] = css/styles.css
+
+
+
+; Optionally add some JavaScripts to your theme.
+
+;scripts[] = js/script.js
 scripts[] = js/wesnoth_hu.js
 
-  ; The regions defined in Zen's default page.tpl.php file.  The name in
-  ; brackets is the name of the variable in the page.tpl.php file, (e.g.
-  ; "[content_top]" in the .info file means there should be a $content_top
-  ; variable in the page.tpl.php file.) The text after the equals sign is a
-  ; descriptive text used on the admin/build/blocks page.
-  ;
-  ; To add a new region, copy Zen's page.tpl.php to your sub-theme's directory,
-  ; add a line line to this file, and then add the new variable to your
-  ; page.tpl.php template.
-regions[left]           = left sidebar
-regions[right]          = right sidebar
-regions[navbar]         = navigation bar
-regions[content_top]    = content top
-regions[content_bottom] = content bottom
-regions[header]         = header
-regions[footer]         = footer
-regions[closure_region] = closure
 
-  ; Various page elements output by the theme can be toggled on and off. The
-  ; "features" control which of these check boxes display on the
-  ; admin/build/themes config page. This is useful for suppressing check boxes
-  ; for elements not used by your sub-theme. To suppress a check box, omit the
-  ; entry for it below. See the Drupal 6 Theme Guide for more info:
-  ; http://drupal.org/node/171205#features
+
+; This section lists the regions defined in Zen's default page.tpl.php and
+; maintenance-page.tpl.php files. The name in brackets is the machine name of
+; the region. The text after the equals sign is a descriptive text used on the
+; admin/structure/blocks page.
+;
+; In the page.tpl, the contents of the region are output with a
+; $page['MACHINE-NAME'] variable and, in the maintenance-page.tpl, the region is
+; output with a $MACHINE-NAME variable. For example, with this line in the .info
+; file:
+;   regions[header_top] = Header top
+; You'll use this variable in page.tpl.php:
+;   <?php print render($page['header_top']); ?>
+; And you'll use this variable in maintenance-page.tpl.php:
+;   <?php print $header_top; ?>
+
+regions[header]         = Header
+regions[navigation]     = Navigation bar
+regions[highlighted]    = Highlighted
+regions[help]           = Help
+regions[content]        = Content
+regions[sidebar_first]  = First sidebar
+regions[sidebar_second] = Second sidebar
+regions[footer]         = Footer
+regions[bottom]         = Page bottom
+
+; The page_top and page_bottom regions are hidden, which means they will not
+; show up on the blocks administration page. But they are required in order for
+; the html.tpl.php to work properly, so do not delete them.
+
+regions[page_top]       = Page top
+regions[page_bottom]    = Page bottom
+
+
+
+; Various page elements output by the theme can be toggled on and off. The
+; "features" control which of these check boxes display on the
+; admin/appearance config page. This is useful for suppressing check boxes
+; for elements not used by your sub-theme. To suppress a check box, omit the
+; entry for it below. See the Drupal 7 Theme Guide for more info:
+; https://drupal.org/node/171205#features
+
 features[] = logo
 features[] = name
 features[] = slogan
-features[] = mission
 features[] = node_user_picture
 features[] = comment_user_picture
-features[] = search
 features[] = favicon
-features[] = primary_links
-features[] = secondary_links
+features[] = main_menu
+features[] = secondary_menu
 
-  ; Set the default settings to be used in theme-settings.php
-settings[zen_block_editing]        = 1
+
+
+; Set the default values of settings on the theme-settings.php form.
+
 settings[zen_breadcrumb]           = yes
 settings[zen_breadcrumb_separator] = ' › '
 settings[zen_breadcrumb_home]      = 1
-settings[zen_breadcrumb_trailing]  = 1
+settings[zen_breadcrumb_trailing]  = 0
 settings[zen_breadcrumb_title]     = 0
+settings[zen_skip_link_anchor]     = main-menu
+settings[zen_skip_link_text]       = Jump to navigation
+settings[zen_meta][]               = html5
+settings[zen_meta][]               = meta
 settings[zen_rebuild_registry]     = 1
-settings[zen_wireframes]           = 0
 
+; To make this sub-theme an admin theme with shortcut links next to titles,
+; uncomment the line below.
+
+;settings[shortcut_module_link]    = 1
+
+; To add a Panels layout (which can also be used by Display Suite), uncomment
+; the line below and see the documentation at: https://drupal.org/node/495654
+;plugins[panels][layouts] = panels-layouts

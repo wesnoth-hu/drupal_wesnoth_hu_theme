@@ -1,43 +1,139 @@
 <?php
-// $Id: template.php,v 1.13 2008/05/13 09:19:13 johnalbin Exp $
-
 /**
  * @file
+ * Contains the theme's functions to manipulate Drupal's default markup.
  *
- * OVERRIDING THEME FUNCTIONS
- *
- * The Drupal theme system uses special theme functions to generate HTML output
- * automatically. Often we wish to customize this HTML output. To do this, we
- * have to override the theme function. You have to first find the theme
- * function that generates the output, and then "catch" it and modify it here.
- * The easiest way to do it is to copy the original function in its entirety and
- * paste it here, changing the prefix from theme_ to wesnoth_hu_theme_. For example:
- *
- *   original: theme_breadcrumb()
- *   theme override: wesnoth_hu_theme_breadcrumb()
- *
- * where wesnoth_hu_theme is the name of your sub-theme. For example, the zen_classic
- * theme would define a zen_classic_breadcrumb() function.
- *
- * If you would like to override any of the theme functions used in Zen core,
- * you should first look at how Zen core implements those functions:
- *   theme_breadcrumbs()      in zen/template.php
- *   theme_menu_item_link()   in zen/template-menus.php
- *   theme_menu_local_tasks() in zen/template-menus.php
+ * Complete documentation for this file is available online.
+ * @see https://drupal.org/node/1728096
  */
 
-/*
- * Add any conditional stylesheets you will need for this sub-theme.
- *
- * To add stylesheets that ALWAYS need to be included, you should add them to
- * your .info file instead. Only use this section if you are including
- * stylesheets based on certain conditions.
- */
 
-/* -- Delete this line if you want to use and modify this code
-// Example: optionally add a fixed width CSS file.
-if (theme_get_setting('wesnoth_hu_theme_fixed')) {
-  drupal_add_css(path_to_theme() . '/layout-fixed.css', 'theme', 'all');
+/**
+ * Override or insert variables into the maintenance page template.
+ *
+ * @param array $variables
+ *   Variables to pass to the theme template.
+ * @param string $hook
+ *   The name of the template being rendered ("maintenance_page" in this case.)
+ */
+/* -- Delete this line if you want to use this function
+function wesnoth_hu_theme_preprocess_maintenance_page(&$variables, $hook) {
+  // When a variable is manipulated or added in preprocess_html or
+  // preprocess_page, that same work is probably needed for the maintenance page
+  // as well, so we can just re-use those functions to do that work here.
+  STARTERKIT_preprocess_html($variables, $hook);
+  STARTERKIT_preprocess_page($variables, $hook);
+}
+// */
+
+/**
+ * Override or insert variables into the html templates.
+ *
+ * @param array $variables
+ *   Variables to pass to the theme template.
+ * @param string $hook
+ *   The name of the template being rendered ("html" in this case.)
+ */
+/* -- Delete this line if you want to use this function
+function wesnoth_hu_theme_preprocess_html(&$variables, $hook) {
+  $variables['sample_variable'] = t('Lorem ipsum.');
+
+  // The body tag's classes are controlled by the $classes_array variable. To
+  // remove a class from $classes_array, use array_diff().
+  $variables['classes_array'] = array_diff($variables['classes_array'],
+    array('class-to-remove')
+  );
+}
+// */
+
+/**
+ * Override or insert variables into the page templates.
+ *
+ * @param array $variables
+ *   Variables to pass to the theme template.
+ * @param string $hook
+ *   The name of the template being rendered ("page" in this case.)
+ */
+/* -- Delete this line if you want to use this function
+function wesnoth_hu_theme_preprocess_page(&$variables, $hook) {
+  $variables['sample_variable'] = t('Lorem ipsum.');
+}
+// */
+
+/**
+ * Override or insert variables into the region templates.
+ *
+ * @param array $variables
+ *   Variables to pass to the theme template.
+ * @param string $hook
+ *   The name of the template being rendered ("region" in this case.)
+ */
+/* -- Delete this line if you want to use this function
+function wesnoth_hu_theme_preprocess_region(&$variables, $hook) {
+  // Don't use Zen's region--no-wrapper.tpl.php template for sidebars.
+  if (strpos($variables['region'], 'sidebar_') === 0) {
+    $variables['theme_hook_suggestions'] = array_diff(
+      $variables['theme_hook_suggestions'], array('region__no_wrapper')
+    );
+  }
+}
+// */
+
+/**
+ * Override or insert variables into the block templates.
+ *
+ * @param array $variables
+ *   Variables to pass to the theme template.
+ * @param string $hook
+ *   The name of the template being rendered ("block" in this case.)
+ */
+/* -- Delete this line if you want to use this function
+function wesnoth_hu_theme_preprocess_block(&$variables, $hook) {
+  // Add a count to all the blocks in the region.
+  // $variables['classes_array'][] = 'count-' . $variables['block_id'];
+
+  // By default, Zen will use the block--no-wrapper.tpl.php for the main
+  // content. This optional bit of code undoes that:
+  if ($variables['block_html_id'] == 'block-system-main') {
+    $variables['theme_hook_suggestions'] = array_diff(
+      $variables['theme_hook_suggestions'], array('block__no_wrapper')
+    );
+  }
+}
+// */
+
+/**
+ * Override or insert variables into the node templates.
+ *
+ * @param array $variables
+ *   Variables to pass to the theme template.
+ * @param string $hook
+ *   The name of the template being rendered ("node" in this case.)
+ */
+/* -- Delete this line if you want to use this function
+function wesnoth_hu_theme_preprocess_node(&$variables, $hook) {
+  $variables['sample_variable'] = t('Lorem ipsum.');
+
+  // Optionally, run node-type-specific preprocess functions, like
+  // STARTERKIT_preprocess_node_page() or STARTERKIT_preprocess_node_story().
+  $function = __FUNCTION__ . '_' . $variables['node']->type;
+  if (function_exists($function)) {
+    $function($variables, $hook);
+  }
+}
+// */
+
+/**
+ * Override or insert variables into the comment templates.
+ *
+ * @param array $variables
+ *   Variables to pass to the theme template.
+ * @param string $hook
+ *   The name of the template being rendered ("comment" in this case.)
+ */
+/* -- Delete this line if you want to use this function
+function wesnoth_hu_theme_preprocess_comment(&$variables, $hook) {
+  $variables['sample_variable'] = t('Lorem ipsum.');
 }
 // */
 
