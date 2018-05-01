@@ -10,133 +10,128 @@
 
 <div id="page"><div id="page-inner">
 
-    <a name="top" id="navigation-top"></a>
-    <?php if ($primary_links || $secondary_links || $navbar): ?>
-      <div id="skip-to-nav"><a href="#navigation"><?php print t('Skip to Navigation'); ?></a></div>
+  <header class="header" role="banner"><div id="header-inner">
+
+    <?php if ($logo || $site_name || $site_slogan): ?>
+      <div id="logo-title">
+
+        <?php if ($logo): ?>
+          <div id="logo"><a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" id="logo-image" /></a></div>
+        <?php endif; ?>
+
+        <?php if ($site_name): ?>
+          <?php if ($title): ?>
+            <div id="site-name"><strong>
+              <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home">
+              <?php print $site_name; ?>
+              </a>
+            </strong></div>
+          <?php else: ?>
+            <h1 id="site-name">
+              <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home">
+              <?php print $site_name; ?>
+              </a>
+            </h1>
+          <?php endif; ?>
+        <?php endif; ?>
+
+        <?php if ($site_slogan): ?>
+          <div id="site-slogan"><?php print $site_slogan; ?></div>
+        <?php endif; ?>
+
+      </div> <!-- /#logo-title -->
     <?php endif; ?>
 
-    <div id="header"><div id="header-inner" class="clear-block">
+    <?php print render($page['header']); ?>
 
-      <?php if ($logo || $site_name || $site_slogan): ?>
-        <div id="logo-title">
+    <?php if ($main_menu): ?>
+      <div id="menu" class="clear-block region">
+        <?php print wesnoth_hu_theme_links(wesnoth_hu_theme_navigation_links('primary-links'))?>
 
-          <?php if ($logo): ?>
-            <div id="logo"><a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" id="logo-image" /></a></div>
-          <?php endif; ?>
+        <?php print render($page['navigation']); ?>
+      </div> <!-- /#menu -->
 
-          <?php if ($site_name): ?>
-            <?php if ($title): ?>
-              <div id="site-name"><strong>
-                <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home">
-                <?php print $site_name; ?>
-                </a>
-              </strong></div>
-            <?php else: ?>
-              <h1 id="site-name">
-                <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home">
-                <?php print $site_name; ?>
-                </a>
-              </h1>
-            <?php endif; ?>
-          <?php endif; ?>
+    <?php endif; ?>
 
-          <?php if ($site_slogan): ?>
-            <div id="site-slogan"><?php print $site_slogan; ?></div>
-          <?php endif; ?>
+  </div></header> <!-- /#header-inner, /#header -->
 
-        </div> <!-- /#logo-title -->
-      <?php endif; ?>
+  <div id="main" class="layout-3col layout-swap"><div id="main-inner"><div id="main-section">
 
-      <?php if ($header): ?>
-        <div id="header-blocks" class="region region-header">
-          <?php print $header; ?>
-        </div> <!-- /#header-blocks -->
-      <?php endif; ?>
+    <?php
+      // Render the sidebars to see if there's anything in them.
+      $sidebar_first  = render($page['sidebar_first']);
+      $sidebar_second = render($page['sidebar_second']);
+      // Decide on layout classes by checking if sidebars have content.
+      $content_class = 'layout-3col__full';
+      $sidebar_first_class = $sidebar_second_class = '';
+      if ($sidebar_first && $sidebar_second):
+        $content_class = 'layout-3col__right-content';
+        $sidebar_first_class = 'layout-3col__first-left-sidebar';
+        $sidebar_second_class = 'layout-3col__second-left-sidebar';
+      elseif ($sidebar_second):
+        $content_class = 'layout-3col__left-content';
+        $sidebar_second_class = 'layout-3col__right-sidebar';
+      elseif ($sidebar_first):
+        $content_class = 'layout-3col__right-content';
+        $sidebar_first_class = 'layout-3col__left-sidebar';
+      endif;
+    ?>
 
-      <a name="navigation" id="navigation"></a>
-
-      <?php if ($primary_links): ?>
-        <div id="menu" class="clear-block region">
-          <?php print wesnoth_hu_theme_links(wesnoth_hu_theme_navigation_links('primary-links'))?>
-        </div> <!-- /#menu -->
-      <?php endif; ?>
-
-    </div></div> <!-- /#header-inner, /#header -->
-
-    <div id="main"><div id="main-inner" class="clear-block"><div id="main-section">
-
+    <main class="<?php print $content_class; ?>">
       <div id="content"><div id="content-inner">
-			<div id="content-top-img"><div id="content-top-img-inner"></div></div><!-- added for styling only -->
-      <div id="content-inner2"><div id="content-inner3"><!-- added for proper background  styling -->
 
-        <?php if ($mission): ?>
-          <div id="mission"><?php print $mission; ?></div>
-        <?php endif; ?>
+        <div id="content-top-img"><div id="content-top-img-inner"></div></div><!-- added for styling only -->
 
-        <?php if ($content_top): ?>
-          <div id="content-top" class="region region-content_top">
-            <?php print $content_top; ?>
-          </div> <!-- /#content-top -->
-        <?php endif; ?>
+        <div id="content-inner2"><div id="content-inner3"><!-- added for proper background  styling -->
 
-        <?php if ($breadcrumb || $title || $tabs || $help || $messages): ?>
-          <div id="content-header">
-            <?php print $breadcrumb; ?>
-            <?php if ($title): ?>
-              <h1 class="title"><?php print $title; ?></h1>
-            <?php endif; ?>
-            <?php print $messages; ?>
-            <?php if ($tabs): ?>
-              <div class="tabs"><?php print $tabs; ?></div>
-            <?php endif; ?>
-            <?php print $help; ?>
-          </div> <!-- /#content-header -->
-        <?php endif; ?>
+          <?php print render($page['highlighted']); ?>
 
-    <main class="<?php print $content_class; ?>" role="main">
-      <?php print render($page['highlighted']); ?>
-      <?php print $breadcrumb; ?>
-      <a href="#skip-link" class="visually-hidden visually-hidden--focusable" id="main-content">Back to top</a>
-      <?php print render($title_prefix); ?>
-      <?php if ($title): ?>
-        <h1><?php print $title; ?></h1>
-      <?php endif; ?>
-      <?php print render($title_suffix); ?>
-      <?php print $messages; ?>
-      <?php print render($tabs); ?>
-      <?php print render($page['help']); ?>
-      <?php if ($action_links): ?>
-        <ul class="action-links"><?php print render($action_links); ?></ul>
-      <?php endif; ?>
-      <?php print render($page['content']); ?>
-      <?php print $feed_icons; ?>
+          <?php print $breadcrumb; ?>
+          <a href="#skip-link" class="visually-hidden visually-hidden--focusable" id="main-content">Back to top</a>
+          <?php print render($title_prefix); ?>
+          <?php if ($title): ?>
+            <h1><?php print $title; ?></h1>
+          <?php endif; ?>
+          <?php print render($title_suffix); ?>
+          <?php print $messages; ?>
+          <?php print render($tabs); ?>
+          <?php print render($page['help']); ?>
+          <?php if ($action_links): ?>
+            <ul class="action-links"><?php print render($action_links); ?></ul>
+          <?php endif; ?>
+          <?php print render($page['content']); ?>
+          <?php print $feed_icons; ?>
+
+          <?php if ($content_bottom): ?>
+            <div id="content-bottom" class="region region-content_bottom">
+              <?php print render($page['content_bottom']); ?>
+            </div> <!-- /#content-bottom -->
+          <?php endif; ?>
+
+        </div></div> <!-- /#content-inner3, /content-inner2 -->
+
+        <div id="content-bottom-img"><div id="content-bottom-img-inner"></div></div><!-- added for styling only -->
+
+      </div></div> <!-- /#content-inner, /#content -->
     </main>
 
-        <?php if ($content_bottom): ?>
-          <div id="content-bottom" class="region region-content_bottom">
-            <?php print $content_bottom; ?>
-          </div> <!-- /#content-bottom -->
-        <?php endif; ?>
-				
-      </div></div> <!-- /#content-inner3, /content-inner2 -->
-      <div id="content-bottom-img"><div id="content-bottom-img-inner"></div></div><!-- added for styling only -->
-      </div></div> <!-- /#content-inner, /#content -->
-          
     <?php if ($sidebar_first): ?>
-      <aside class="<?php print $sidebar_first_class; ?>" role="complementary">
+      <aside id="sidebar-left" class="<?php print $sidebar_first_class; ?>" role="complementary"><div id="sidebar-left-inner">
         <?php print $sidebar_first; ?>
-      </aside>
+      </div></aside>
     <?php endif; ?>
 
     <?php if ($sidebar_second): ?>
-      <aside class="<?php print $sidebar_second_class; ?>" role="complementary">
+      <aside id="sidebar-right" class="<?php print $sidebar_second_class; ?>" role="complementary"><div id="sidebar-right-inner">
         <?php print $sidebar_second; ?>
-      </aside>
+      </div></aside>
     <?php endif; ?>
 
-  </div></div></div> <!-- /#main-inner, /#main -->
+  </div></div></div> <!-- /.main-section, /#main-inner, /#main -->
 
-  <?php print render($page['footer']); ?>
+  <footer id="footer"><div id="footer-inner">
+    <?php print render($page['footer']); ?>
+  </div></footer><!-- /#footer-inner, #footer -->
 
 </div></div> <!-- /#page-inner, /#page -->
 

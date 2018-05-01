@@ -140,6 +140,7 @@ function wesnoth_hu_theme_preprocess_comment(&$variables, $hook) {
 /**
  * Implementation of HOOK_theme().
  */
+/*
 function wesnoth_hu_theme_theme(&$existing, $type, $theme, $path) {
 
   // insert a large indexed value, so advanced_forum_theme_register_alter can't override it
@@ -148,9 +149,10 @@ function wesnoth_hu_theme_theme(&$existing, $type, $theme, $path) {
   $existing['forum_topic_list']['theme paths'][99] = 'sites/all/themes/wesnoth_hu_theme/templates/';
   $existing['comment_wrapper']['theme paths'][99] = 'sites/all/themes/wesnoth_hu_theme/templates/';
   $existing['author_pane']['theme paths'][99] = 'sites/all/themes/wesnoth_hu_theme/templates/';
-  
+
   return zen_theme($existing, $type, $theme, $path);
 }
+ */
 
 /**
  * Override or insert PHPTemplate variables into all templates.
@@ -161,16 +163,12 @@ function wesnoth_hu_theme_theme(&$existing, $type, $theme, $path) {
  *   The name of the theme function being called (name of the .tpl.php file.)
  */
 // /* -- Delete this line if you want to use this function
+/*
 function wesnoth_hu_theme_preprocess(&$vars, $hook) {
   global $theme_key;
   $path_to_theme = drupal_get_path('theme', $theme_key);
 
   if($hook == 'comment'){
-    /*
-    print '<pre>';
-    print_r($vars['account']);
-    exit();
-    // */
     // tegyük bele az osztályokba az online felhasználók kijelzését
     $timestamp = time() - 1800; // 3600s is one hour.
     $result = db_query('SELECT COUNT(*) FROM {sessions} WHERE uid = %d AND timestamp >= %d', $vars['account']->uid, $timestamp);
@@ -187,6 +185,7 @@ function wesnoth_hu_theme_preprocess(&$vars, $hook) {
  * The rel="nofollow" attribute is missing from anonymous users' URL in Drupal 6.0-6.2.
  */
 ///* -- Delete this line if you want to use this function
+/*
 function wesnoth_hu_theme_username($object) {
 
   if ($object->uid && $object->name) {
@@ -273,12 +272,12 @@ function wesnoth_hu_theme_navigation_links_level($tree_page, $tree_all) {
     $item_page = $tree_page[$key];
     $item_all = $tree_all[$key];
     if (!$item_all['link']['hidden']) {
-    	$class = '';
+      $class = '';
       $l = $item_all['link']['localized_options'];
       $l['href'] = $item_all['link']['href'];
       $l['title'] = $item_all['link']['title'];
       if ($item_page['link']['in_active_trail']) {
-      	$class = ' active-trail';
+        $class = ' active-trail';
       }
       if ($item_all['below']) {
         $l['children'] = wesnoth_hu_theme_navigation_links_level($item_page['below'], $item_all['below']);
@@ -300,7 +299,7 @@ function wesnoth_hu_theme_primary_links() {
 
 
 /**
- * Return a themed set of links. (Extended to support multidimensional arrays of links.) 
+ * Return a themed set of links. (Extended to support multidimensional arrays of links.)
  *
  * @param $links
  *   A keyed array of links to be themed.
@@ -352,7 +351,7 @@ function wesnoth_hu_theme_links($links, $attributes = array('class' => 'links'))
         }
         $output .= '<span'. $span_attributes .'>'. $link['title'] .'</span>';
       }
-      
+
       // Added: if the link has child items, print them out recursively
       if (isset($link['children'])) {
         $output .= "\n" . theme('links', $link['children'], array('class' =>'sublinks'));
@@ -371,6 +370,7 @@ function wesnoth_hu_theme_links($links, $attributes = array('class' => 'links'))
  * Calculates the number of unread replies for each forum and returns the
  * count for the requested forum.
  */
+/*
 function wesnoth_hu_theme_unread_comments_in_forum($tid, $uid) {
   static $result_cache = NULL;
   $r = 0;
@@ -402,3 +402,4 @@ function wesnoth_hu_theme_unread_comments_in_forum($tid, $uid) {
   if(isset($result_cache[$tid])) $r = $result_cache[$tid];
   return $r;
 }
+ */

@@ -9,10 +9,27 @@
             "email": "gabor.udvari@gmail.com"
         }
     ],
+    "autoload": {
+            "psr-4": { "": "./" }
+    },
     "require": {
     },
     "require-dev": {
-        "codegyre/robo": "dev-master",
-        "leafo/scssphp": "~0.2"
+        "consolidation/robo": "~1.2",
+        "leafo/scssphp": "~0.7",
+        "fxp/composer-asset-plugin": ">=1.0",
+        "bower-asset/breakpoint-sass": "~2.7",
+        "bower-asset/typey": "~1.1",
+        "bower-asset/zen-grids": "~2.0",
+        "bower-asset/chroma": "~1.2",
+        "bower-asset/support-for": "~1.0"
+    },
+    "scripts" : {
+        "pre-install-cmd": [
+            "ComposerHelper::checkAssetInstaller"
+        ],
+        "pre-update-cmd": [
+            "ComposerHelper::checkAssetInstaller"
+        ]
     }
 }
